@@ -3,12 +3,14 @@
     <div class="container ">      
         <div class="row justify-content-center ">
             <div class="col-md-8 ">
-                <div class="card card-default" v-for="photo in photos">
-                    <div class="card-header">{{photo.title}}</div>
+                <div class="card card-default" v-for="photo in photos" style="margin-top:20px;">
+                    <div class="card-header" v-if="photo.title != ' '">{{photo.title}}</div>
+                    <div class="card-header" v-else>Название отсутствует</div>
                     <div class="card-body">
                         <img :src="photo.media.m">
                         <p>Автора: {{photo.author}}</p>
-                        <p>Тэги {{photo.tags}}</p>
+                        <p v-if="photo.tags != ''">Тэги: {{photo.tags}}</p>
+                        <p>Опубликовано:{{photo.published.split('T').join(" ").split("Z").join()}}</p>
                     </div>
                 </div>
             </div>
